@@ -14,7 +14,7 @@
     "release": "node_modules/.bin/webpack --config webpack.release.config.js",
     "serve-release": "node_modules/.bin/webpack-dev-server --config webpack.release.config.js --content-base /release"
   },
-  "author": "陈飞",
+  "author": "Frank-Chan",
   "license": "Apache-2.0",
   "devDependencies": {
     "cesium": "^1.69.0",
