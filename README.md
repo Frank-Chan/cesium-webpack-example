@@ -34,7 +34,7 @@ Cesium官方推荐通过`import`关键字使用[ES6](https://developer.mozilla.o
 	import "cesium/Build/Cesium/Widgets/widgets.css";
 
 ## 2.代码压缩与优化
-### 2.1 Treeshaking
+### Treeshaking
 
 `webpack.release.config.js`对CesiumJS模块激活了tree-shaking功能，将会让未使用的模块不被包含到生产环境中。更详细的信息请参考 [Tree Shaking](https://webpack.js.org/guides/tree-shaking) 文档。
 
