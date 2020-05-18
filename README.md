@@ -1,56 +1,54 @@
 # cesium-webpack-example
+通过[Webpack](https://webpack.js.org/concepts/)使用[Cesium](https://cesiumjs.org/) 的应用程序的最少推荐设置。
 
-A minimal recommended setup for an applications using [Cesium](https://cesiumjs.org/) with [Webpack](https://webpack.js.org/concepts/).
+## 0. 运行应用程序
+	npm install  //安装webpack所需的开发模块（仅在第一次使用没有node模块时执行，后续一般无需重复执行）,或者cnpm install
+	npm start   //启动应用程序，浏览器会自动打开`localhost:8080`.
 
-[![Build Status](https://travis-ci.org/AnalyticalGraphicsInc/cesium-webpack-example.svg?branch=using-custom-loader)](https://travis-ci.org/AnalyticalGraphicsInc/cesium-webpack-example)
+### 可用的脚本
 
-### Running this application
+* `npm run build` - 通过`webpack.config.js`运行一个webpack build
+* `npm start` - 通过`webpack.config.js`运行一个webpack build同时启动一个web 开发server
+* `npm run release` - 通过`webpack.release.config.js`运行一个优化的webpack build
+* `npm run serve-release` - 通过`webpack.release.config.js`运行一个优化的webpack build同时启动一个web开发server
 
-	npm install
-	npm start
+### 配置文件说明
 
-Navigate to `localhost:8080`.
+在本项目中包括两个webpack配置文件：
+* `webpack.config.js`   -包含开发环境的配置信息。
+* `webpack.release.config.js`   -则包含用于生产环境的优化后的配置信息。
 
-##### Available scripts
 
-* `npm start` - Runs a webpack build with `webpack.config.js` and starts a development server
-* `npm run build` - Runs a webpack build with `webpack.config.js`
-* `npm run release` - Runs an optimized webpack build with `webpack.release.config.js`
-* `npm run serve-release` - Runs an optimized webpack build with `webpack.release.config.js` and starts a development server
+## 1. 在应用程序中请求Cesium
 
-##### Configurations
+Cesium官方推荐通过`import`关键字使用[ES6](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import) 模块
 
-We've included two webpack configuration files in this repository. `webpack.config.js` contains configuration for development while `webpack.release.config.js` contains an optimized configuration for production use.
 
-### Requiring Cesium in your application
-
-We recommend using Cesium as an [ES6](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import) module, via the `import` keyword.
-
-#### Import named modules from Cesium
+### 1.1 从Cesium中导入已命名的模块
 
 	import { Color } from 'cesium';
 	var c = Color.fromRandom();
 
-#### Import Cesium static asset files
+### 1.2 导入Cesium的静态资产文件
 	
 	import "cesium/Build/Cesium/Widgets/widgets.css";
 
-### Treeshaking
+## 2.代码压缩与优化
+### 2.1 Treeshaking
 
-`webpack.release.config.js` enables tree-shaking of CesiumJS modules so that unused modules are not included in the production bundle. See Webpack's [Tree Shaking](https://webpack.js.org/guides/tree-shaking/) documentation for more details.
+`webpack.release.config.js`对CesiumJS模块激活了tree-shaking功能，将会让未使用的模块不被包含到生产环境中。更详细的信息请参考 [Tree Shaking](https://webpack.js.org/guides/tree-shaking) 文档。
 
-##### Removing pragmas
+##### 移除注记-Removing pragmas
 
-To remove pragmas such as a traditional Cesium release build, use the [`strip-pragma-loader`](https://www.npmjs.com/package/strip-pragma-loader).
+在Cesium的源代码中有开发者的错误和警告提示，在release版本中这些信息通过使用[`strip-pragma-loader`](https://www.npmjs.com/package/strip-pragma-loader)移除了。
 
-Install the plugin with npm,
+通过npm安装插件包
 
 ```
 npm install strip-pragma-loader --save-dev
 ```
 
-and include the loader in `module.rules` with `debug` set to `false`.
-
+在`module.rules`中配置上述装载器，同时设置`debug`的值为`false`.
 ```
 rules: [{
 	test: /\.js$/,
@@ -69,10 +67,4 @@ rules: [{
 
 ## Contributions
 
-Pull requests are appreciated. Please use the same [Contributor License Agreement (CLA)](https://github.com/AnalyticalGraphicsInc/cesium/blob/master/CONTRIBUTING.md) used for [Cesium](https://cesiumjs.org/).
-
----
-
-Developed by the Cesium team.
-
-<a href="https://cesium.com/"><img alt="Cesium" src="doc/cesium.png" /></a>
+开发团队[Cesium](https://cesium.com/).
