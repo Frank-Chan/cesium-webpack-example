@@ -5,6 +5,7 @@
 	npm install  //安装webpack所需的开发模块（仅在第一次使用没有node模块时执行，后续一般无需重复执行）,或者cnpm install
 	npm install --save-dev cesium	//第一次同步github上的代码后需执行
 	npm start   //启动应用程序，浏览器会自动打开`localhost:8080`.
+注意：src下的data文件夹需copy到应用程序根目录下
 
 ### 可用的脚本
 
